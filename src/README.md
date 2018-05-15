@@ -1,5 +1,6 @@
 Application Structure Overview
 ==========
+
 - `assets`: Contains assets used across the application. These include fonts,
 icons, images, etc.
 - `components`: Contains all the application react components. These in include
