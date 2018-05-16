@@ -78,7 +78,8 @@
 
         &.active {
           color: themed('colorContentText');
-          border-bottom: 4px solid themed('colorHeaderBorderColor');
+          border-bottom: 4px solid;
+          border-bottom-color:  #FFFFFF;
         }
       }
     }
