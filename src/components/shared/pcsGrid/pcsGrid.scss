@@ -365,7 +365,6 @@ $card-background-color: transparent;
 $cell-highlight-border: transparent;
 $cell-horizontal-border: transparent;
 $header-background-color: transparent;
-$selected-color: #232629;
 
 @import 'node_modules/ag-grid/src/styles/ag-grid.scss';
 @import 'node_modules/ag-grid/src/styles/ag-theme-dark.scss';
@@ -396,9 +395,6 @@ $selected-color: #232629;
 
   .ag-row {
     margin-bottom: 0;
-    border-top: 1px solid #565454;
-
-    &:last-child { border-bottom: 1px solid #565454; }
 
     .ag-cell {
       outline: none;
@@ -411,20 +407,30 @@ $selected-color: #232629;
       }
     }
 
-    &.ag-row-hover + .ag-row,
-    &.ag-row-selected + .ag-row { border-top-color: #111416; }
+  }
 
-    &.ag-row-hover:not(.ag-row-selected) {
-      border-color: #111416;
-      background: #1A1C1F;
+  @include themify($themes) {
+    .ag-row {
+      border-top: 1px solid #565454;
 
-      .first-child-column { border-color: #6f64fb; }
-    }
+      &:last-child { border-bottom: 1px solid #565454; }
 
-    &.ag-row-selected {
-      border-color: #111416;
+      &.ag-row-hover + .ag-row,
+      &.ag-row-selected + .ag-row { border-top-color: #111416; }
 
-      .first-child-column { border-color: #6f64fb; }
+      &.ag-row-hover:not(.ag-row-selected) {
+        border-color: #111416;
+        background-color: #1A1C1F;
+
+        .first-child-column { border-color: themed('colorGridSelectedRowBorder'); }
+      }
+
+      &.ag-row-selected {
+        border-color: #111416;
+        background-color: #232629;
+
+        .first-child-column { border-color: themed('colorGridSelectedRowBorder'); }
+      }
     }
   }
 }
