@@ -176,7 +176,7 @@ export class PcsGrid extends Component {
       </div>;
 
     return (
-      <div className="pcs-grid-container ag-dark pcs-ag-dark">
+      <div className="pcs-grid-container ag-theme-dark">
         { !rowData ? loadingContainer : ''}
         <AgGridReact {...gridParams} />
       </div>
