@@ -7,8 +7,8 @@ import { rulesColumnDefs, checkboxParams } from 'components/pages/rules/rulesGri
 import { TimeRenderer } from 'components/shared/cellRenderers';
 
 const columnDefs = [
+  checkboxParams,
   {
-    ...checkboxParams,
     headerName: 'maintenance.alertOccGrid.occurrence',
     field: 'name'
   },

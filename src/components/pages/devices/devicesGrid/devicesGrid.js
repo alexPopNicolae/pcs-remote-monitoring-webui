@@ -27,7 +27,8 @@ export class DevicesGrid extends Component {
 
     // Default device grid columns
     this.columnDefs = [
-      { ...deviceColumnDefs.id, ...checkboxParams },
+      checkboxParams,
+      deviceColumnDefs.id,
       deviceColumnDefs.isSimulated,
       deviceColumnDefs.deviceType,
       deviceColumnDefs.firmware,
@@ -118,7 +119,6 @@ export class DevicesGrid extends Component {
       /* Grid Properties */
       ...defaultDeviceGridProps,
       columnDefs: translateColumnDefs(this.props.t, this.columnDefs),
-      onRowDoubleClicked: ({ node }) => node.setSelected(!node.isSelected()),
       sizeColumnsToFit: true,
       getSoftSelectId: this.getSoftSelectId,
       softSelectId: (this.state.softSelectedDevice || {}).id,
@@ -127,6 +127,7 @@ export class DevicesGrid extends Component {
         t: this.props.t
       },
       /* Grid Events */
+      onRowClicked: ({ node }) => node.setSelected(!node.isSelected()),
       onGridReady: this.onGridReady,
       onSoftSelectChange: this.onSoftSelectChange,
       onHardSelectChange: this.onHardSelectChange

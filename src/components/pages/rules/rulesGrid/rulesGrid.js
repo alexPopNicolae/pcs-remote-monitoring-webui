@@ -26,7 +26,8 @@ export class RulesGrid extends Component {
     };
 
     this.columnDefs = [
-      { ...rulesColumnDefs.ruleName, ...checkboxParams },
+      checkboxParams,
+      rulesColumnDefs.ruleName,
       rulesColumnDefs.description,
       rulesColumnDefs.severity,
       rulesColumnDefs.filter,
@@ -134,6 +135,7 @@ export class RulesGrid extends Component {
         t: this.props.t
       },
       /* Grid Events */
+      onRowClicked: ({ node }) => node.setSelected(!node.isSelected()),
       onHardSelectChange: this.onHardSelectChange,
       onSoftSelectChange: this.onSoftSelectChange
     };

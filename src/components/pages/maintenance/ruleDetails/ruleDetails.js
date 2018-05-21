@@ -226,6 +226,7 @@ export class RuleDetails extends Component {
       paginationPageSize: Config.smallGridPageSize,
       onHardSelectChange: this.onAlertGridHardSelectChange,
       onGridReady: this.onAlertGridReady,
+      onRowClicked: ({ node }) => node.setSelected(!node.isSelected()),
       t
     };
 

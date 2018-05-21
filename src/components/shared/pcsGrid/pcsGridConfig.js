@@ -14,3 +14,11 @@ export const gridValueFormatters = {
 
 /** A the class name for the first row in a grid (used for soft and hard selection ) */
 export const FIRST_COLUMN_CLASS = 'first-child-column';
+
+export const checkboxColumn = {
+  cellClass: [FIRST_COLUMN_CLASS],
+  checkboxSelection: true,
+  headerCheckboxSelection: true,
+  headerCheckboxSelectionFilteredOnly: true,
+  width: 25
+};

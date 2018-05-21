@@ -9,23 +9,20 @@ import {
   RuleStatusRenderer,
   CountRenderer,
   LastTriggerRenderer,
-  LinkRenderer
+  LinkRenderer,
+  SoftSelectLinkRenderer
 } from 'components/shared/cellRenderers';
-import { FIRST_COLUMN_CLASS } from 'components/shared/pcsGrid/pcsGridConfig';
+import { checkboxColumn } from 'components/shared/pcsGrid/pcsGridConfig';
 export const LAST_TRIGGER_DEFAULT_WIDTH = 310;
 
-export const checkboxParams = {
-  headerCheckboxSelection: true,
-  headerCheckboxSelectionFilteredOnly: true,
-  checkboxSelection: true,
-  cellClass: [FIRST_COLUMN_CLASS]
-};
+export const checkboxParams = checkboxColumn;
 
 export const rulesColumnDefs = {
   ruleName: {
     headerName: 'rules.grid.ruleName',
     field: 'name',
-    filter: 'text'
+    filter: 'text',
+    cellRendererFramework: SoftSelectLinkRenderer
   },
   description: {
     headerName: 'rules.grid.description',

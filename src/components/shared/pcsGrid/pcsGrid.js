@@ -131,15 +131,15 @@ export class PcsGrid extends Component {
 
   /** When a row is selected, try to fire a soft select event, plus any props callbacks */
   onRowClicked = rowEvent => {
-    this.clickStream.next(
-      () => {
-        const { onSoftSelectChange, onRowClicked } = this.props;
-        if (isFunc(onSoftSelectChange)) {
-          onSoftSelectChange(rowEvent.data, rowEvent);
+    console.log(rowEvent);
+    if (rowEvent.event.target.className.indexOf('soft-select-link-cell') === -1) {
+      this.clickStream.next(
+        () => {
+          const { onSoftSelectChange, onRowClicked } = this.props;
+          if (isFunc(onRowClicked)) onRowClicked(rowEvent);
         }
-        if (isFunc(onRowClicked)) onRowClicked(rowEvent);
-      }
-    );
+      );
+    }
   };
 
   onRowDoubleClicked = rowEvent => {
@@ -152,9 +152,16 @@ export class PcsGrid extends Component {
   };
 
   render() {
+    const {
+      onSoftSelectChange,
+      getSoftSelectId,
+      softSelectId,
+      context = {},
+      ...restProps
+    } = this.props;
     const gridParams = {
       ...this.defaultPcsGridProps,
-      ...this.props,
+      ...restProps,
       headerHeight: ROW_HEIGHT,
       rowHeight: ROW_HEIGHT,
       onGridReady: this.onGridReady,
@@ -163,9 +170,13 @@ export class PcsGrid extends Component {
       onRowDoubleClicked: this.onRowDoubleClicked,
       rowClassRules: {
         'pcs-row-soft-selected': ({ data }) =>
-          isFunc(this.props.getSoftSelectId)
-            ? this.props.getSoftSelectId(data) === this.props.softSelectId
+          isFunc(getSoftSelectId)
+            ? getSoftSelectId(data) === softSelectId
             : false
+      },
+      context: {
+        ...context,
+        onSoftSelectChange
       }
     };
     const { rowData, pcsLoadingTemplate } = this.props;
