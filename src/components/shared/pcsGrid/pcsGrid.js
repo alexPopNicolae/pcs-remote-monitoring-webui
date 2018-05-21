@@ -131,7 +131,6 @@ export class PcsGrid extends Component {
 
   /** When a row is selected, try to fire a soft select event, plus any props callbacks */
   onRowClicked = rowEvent => {
-    console.log(rowEvent);
     if (rowEvent.event.target.className.indexOf('soft-select-link-cell') === -1) {
       this.clickStream.next(
         () => {
