@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 import { isFunc } from 'utilities';
 
@@ -20,7 +19,7 @@ export class SoftSelectLinkRenderer extends Component {
     const { value, context } = this.props;
     return (
       isFunc(context.onSoftSelectChange)
-        ? <a href="#" className="soft-select-link-cell" onClick={this.onClick}>{ value }</a>
+        ? <a href="" className="soft-select-link-cell" onClick={this.onClick}>{ value }</a>
         : value
     );
   }
