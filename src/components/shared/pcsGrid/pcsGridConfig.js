@@ -20,5 +20,6 @@ export const checkboxColumn = {
   checkboxSelection: true,
   headerCheckboxSelection: true,
   headerCheckboxSelectionFilteredOnly: true,
+  suppressMovable: true,
   width: 25
 };

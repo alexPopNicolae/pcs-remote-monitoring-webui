@@ -35,6 +35,7 @@ export class PcsGrid extends Component {
 
     this.defaultPcsGridProps = {
       domLayout: 'autoHeight',
+      suppressDragLeaveHidesColumns: true,
       suppressCellSelection: true,
       suppressClickEdit: true,
       suppressRowClickSelection: true, // Suppress so that a row is only selectable by checking the checkbox
@@ -43,15 +44,11 @@ export class PcsGrid extends Component {
     };
 
     this.subscriptions = [];
-    this.clickStream = new Rx.Subject();
     this.resizeEvents = new Rx.Subject();
   }
 
   componentDidMount() {
     this.subscriptions.push(
-      this.clickStream
-        .debounceTime(Config.clickDebounceTime)
-        .subscribe(clickAction => clickAction()),
       this.resizeEvents
         .debounceTime(Config.gridResizeDebounceTime)
         .filter(() => !!this.gridApi && !!this.props.sizeColumnsToFit)
@@ -132,22 +129,9 @@ export class PcsGrid extends Component {
   /** When a row is selected, try to fire a soft select event, plus any props callbacks */
   onRowClicked = rowEvent => {
     if (rowEvent.event.target.className.indexOf('soft-select-link-cell') === -1) {
-      this.clickStream.next(
-        () => {
-          const { onSoftSelectChange, onRowClicked } = this.props;
-          if (isFunc(onRowClicked)) onRowClicked(rowEvent);
-        }
-      );
+      const { onRowClicked } = this.props;
+      if (isFunc(onRowClicked)) onRowClicked(rowEvent);
     }
-  };
-
-  onRowDoubleClicked = rowEvent => {
-    this.clickStream.next(
-      () => {
-        const { onRowDoubleClicked } = this.props;
-        if (isFunc(onRowDoubleClicked)) onRowDoubleClicked(rowEvent);
-      }
-    );
   };
 
   render() {
@@ -166,7 +150,6 @@ export class PcsGrid extends Component {
       onGridReady: this.onGridReady,
       onSelectionChanged: this.onSelectionChanged,
       onRowClicked: this.onRowClicked,
-      onRowDoubleClicked: this.onRowDoubleClicked,
       rowClassRules: {
         'pcs-row-soft-selected': ({ data }) =>
           isFunc(getSoftSelectId)
