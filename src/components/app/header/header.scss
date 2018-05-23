@@ -26,7 +26,9 @@ $imgSize: 30px;
       margin-left: 10px;
       margin-right: 10px;
 
-      svg { @include square-px-rem(14px); }
+      svg {
+        @include square-px-rem(14px);
+      }
     }
 
     .crumb {
@@ -34,7 +36,9 @@ $imgSize: 30px;
       text-decoration: none;
     }
 
-    a.crumb:hover { text-decoration: underline; }
+    a.crumb:hover {
+      text-decoration: underline;
+    }
   }
 
   .label {
@@ -63,14 +67,18 @@ $imgSize: 30px;
 
       @include square-px-rem($headerHeight);
 
-      svg { @include square-px-rem($svgSize); }
+      svg {
+        @include square-px-rem($svgSize);
+      }
 
       &.profile {
         display: flex;
         justify-content: center;
         align-items: center;
 
-        img { @include square-px-rem($imgSize); }
+        img {
+          @include square-px-rem($imgSize);
+        }
       }
     }
 
@@ -101,37 +109,49 @@ $imgSize: 30px;
 
   // Apply theme properties
   @include themify($themes) {
-    background-color: themed('colorHeaderBg');
+    background-color: #004dff; //themed('colorHeaderBg');
     border-bottom: 1px solid themed('colorHeaderBorderColor');
 
     .breadcrumbs {
-      .chevron-icon svg { fill: themed('colorHeaderText'); }
-      .crumb { color: themed('colorHeaderText'); }
+      .chevron-icon svg {
+        fill: themed('colorHeaderText');
+      }
+      .crumb {
+        color: white; //themed('colorHeaderText');
+      }
     }
 
-    .label { color: themed('colorHeaderText'); }
+    .label {
+      color: white; // themed('colorHeaderText');
+    }
 
     .items-container {
-      border-left: 1px solid themed('colorHeaderItemContainerBorderColor');
+      border-left: #666666; // 1px solid themed('colorHeaderItemContainerBorderColor');
 
       .item-icon {
-        svg { fill: themed('colorHeaderText'); }
+        svg {
+          fill: themed('colorHeaderText');
+        }
 
         &:hover {
-          background-color: themed('colorHeaderItemBgHover');
+          background-color: #000087; //themed('colorHeaderItemBgHover');
 
-          svg { fill: themed('colorHeaderIconHover'); }
+          svg {
+            fill: themed('colorHeaderIconHover');
+          }
         }
       }
 
       .menu {
-        background-color: themed('colorHeaderDropdown');
+        background-color: #004dff; // themed('colorHeaderDropdown');
         border-color: themed('colorSystem');
 
         > .menu-item {
-          color: themed('colorHeaderText');
+          color: white; //themed('colorHeaderText');
 
-          &:hover { background-color: themed('colorHeaderItemBgHover'); }
+          &:hover {
+            background-color: #000087; //themed('colorHeaderItemBgHover');
+          }
         }
       }
     }
