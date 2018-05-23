@@ -20,7 +20,9 @@ $checkboxPadding: 8px;
     width: 6px;
     height: 4px;
 
-    &-thumb { padding-top: 16px; }
+    &-thumb {
+      padding-top: 16px;
+    }
   }
 
   > .pcs-grid-loading-container {
@@ -39,7 +41,9 @@ $checkboxPadding: 8px;
     }
   }
 
-  .ag-root { border: none; }
+  .ag-root {
+    border: none;
+  }
 
   .ag-cell-focus {
     border: none;
@@ -63,7 +67,9 @@ $checkboxPadding: 8px;
     border: none;
     height: $rowHeight;
 
-    &:first-child { border-left: 4px solid transparent !important; }
+    &:first-child {
+      border-left: 4px solid transparent !important;
+    }
   }
 
   .ag-header-cell {
@@ -78,7 +84,9 @@ $checkboxPadding: 8px;
     padding-left: $checkboxPadding;
   }
 
-  .ag-header-cell-label { padding: 0 4px; }
+  .ag-header-cell-label {
+    padding: 0 4px;
+  }
 
   .ag-cell-no-focus.ag-cell.ag-cell-not-inline-editing.ag-cell-value {
     text-transform: capitalize;
@@ -86,7 +94,9 @@ $checkboxPadding: 8px;
   }
 
   .ag-cell-last-left-pinned.ag-cell-no-focus,
-  .ag-ltr .ag-cell-no-focus { border-right: none; }
+  .ag-ltr .ag-cell-no-focus {
+    border-right: none;
+  }
 
   /* Remove three pixels to offset the parent padding for font alignment */
   .ag-header-select-all {
@@ -100,7 +110,9 @@ $checkboxPadding: 8px;
     justify-content: flex-end;
     padding: 0;
 
-    .ag-paging-row-summary-panel { display: none }
+    .ag-paging-row-summary-panel {
+      display: none;
+    }
 
     .ag-paging-button {
       border: none;
@@ -116,20 +128,25 @@ $checkboxPadding: 8px;
     .ag-body,
     .ag-body-viewport,
     .ag-row-even,
-    .ag-row-odd { background-color: transparent; }
+    .ag-row-odd {
+      background-color: transparent;
+    }
 
-    .ag-body-viewport { overflow-y: hidden !important; }
+    .ag-body-viewport {
+      overflow-y: hidden !important;
+    }
 
     .ag-cell {
       background-color: themed('colorGridRowBackground');
       color: themed('colorGridCellText');
       outline: none;
 
-      &.first-child-column { border-left: 4px solid themed('colorGridRowBackground') !important; }
+      &.first-child-column {
+        border-left: 4px solid themed('colorGridRowBackground') !important;
+      }
     }
 
     .ag-row {
-
       &.ag-row-hover .ag-cell,
       &.ag-row-focus .ag-cell {
         border-color: themed('colorGridRowHoverBackground') !important;
@@ -169,6 +186,8 @@ $checkboxPadding: 8px;
       }
     }
 
-    .ag-header-cell-moving { background-color: transparent; }
+    .ag-header-cell-moving {
+      background-color: transparent;
+    }
   }
 }

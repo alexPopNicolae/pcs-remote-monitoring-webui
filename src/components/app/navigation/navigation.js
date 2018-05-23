@@ -16,12 +16,10 @@ const minExpandedNavWindowWidth = 800;
  *
  * @param {ReactSVGProps} props see https://www.npmjs.com/package/react-svg
  */
-const NavIcon = (props) => (
-  <Svg {...props} className="nav-item-icon" />
-);
+const NavIcon = props => <Svg {...props} className="nav-item-icon" />;
 
 /** A presentational component navigation tab links */
-const TabLink = (props) => (
+const TabLink = props => (
   <NavLink to={props.to} className="nav-item" activeClassName="active">
     <NavIcon path={props.svg} />
     <div className="nav-item-text">{props.t(props.labelId)}</div>
@@ -30,7 +28,6 @@ const TabLink = (props) => (
 
 /** The navigation component for the left navigation */
 class Navigation extends Component {
-
   constructor(props) {
     super(props);
 
@@ -51,22 +48,19 @@ class Navigation extends Component {
 
   collapseNav = () => {
     if (
-      window.innerWidth < minExpandedNavWindowWidth
-      && window.innerWidth < this.state.lastWidth // When the window is shrinking
-      && !this.state.collapsed
+      window.innerWidth < minExpandedNavWindowWidth &&
+      window.innerWidth < this.state.lastWidth && // When the window is shrinking
+      !this.state.collapsed
     ) {
       this.setState({ collapsed: true, lastWidth: window.innerWidth });
     } else {
       this.setState({ lastWidth: window.innerWidth });
     }
-  }
+  };
 
-  toggleExpanded = (event) => {
-    this.setState(
-      { collapsed: !this.state.collapsed },
-      () => window.dispatchEvent(new Event('resize'))
-    );
-  }
+  toggleExpanded = event => {
+    this.setState({ collapsed: !this.state.collapsed }, () => window.dispatchEvent(new Event('resize')));
+  };
 
   render() {
     const isExpanded = !this.state.collapsed;
@@ -74,15 +68,15 @@ class Navigation extends Component {
     return (
       <nav className={`app-nav ${isExpanded && 'expanded'}`}>
         <div className="nav-item company">
-          {
-            getLogoPending
-              ? <Indicator size="medium" />
-              : isDefaultLogo
-                ? <NavIcon path={logo} />
-                : <div className="nav-item-icon">
-                    <img src={logo} alt="Logo" />
-                  </div>
-          }
+          {getLogoPending ? (
+            <Indicator size="medium" />
+          ) : isDefaultLogo ? (
+            <NavIcon path={logo} />
+          ) : (
+            <div className="nav-item-icon">
+              <img src={logo} alt="Logo" />
+            </div>
+          )}
           {!getLogoPending && <div className="nav-item-text">{t(name)}</div>}
         </div>
         <button className="nav-item hamburger" onClick={this.toggleExpanded} aria-label="Hamburger">

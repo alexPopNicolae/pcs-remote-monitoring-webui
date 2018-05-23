@@ -109,7 +109,7 @@ $imgSize: 30px;
 
   // Apply theme properties
   @include themify($themes) {
-    background-color: #004dff; //themed('colorHeaderBg');
+    background-color: themed('colorHeaderBg');
     border-bottom: 1px solid themed('colorHeaderBorderColor');
 
     .breadcrumbs {
@@ -117,12 +117,12 @@ $imgSize: 30px;
         fill: themed('colorHeaderText');
       }
       .crumb {
-        color: white; //themed('colorHeaderText');
+        color: themed('colorHeaderText');
       }
     }
 
     .label {
-      color: white; // themed('colorHeaderText');
+      color: themed('colorHeaderText');
     }
 
     .items-container {
@@ -134,7 +134,7 @@ $imgSize: 30px;
         }
 
         &:hover {
-          background-color: #000087; //themed('colorHeaderItemBgHover');
+          background-color: themed('colorHeaderItemBgHover');
 
           svg {
             fill: themed('colorHeaderIconHover');
@@ -143,14 +143,14 @@ $imgSize: 30px;
       }
 
       .menu {
-        background-color: #004dff; // themed('colorHeaderDropdown');
+        background-color: themed('colorHeaderDropdown');
         border-color: themed('colorSystem');
 
         > .menu-item {
-          color: white; //themed('colorHeaderText');
+          color: themed('colorHeaderText');
 
           &:hover {
-            background-color: #000087; //themed('colorHeaderItemBgHover');
+            background-color: themed('colorHeaderItemBgHover');
           }
         }
       }

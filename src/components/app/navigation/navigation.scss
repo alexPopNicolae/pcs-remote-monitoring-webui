@@ -28,7 +28,9 @@ $companySvgSize: 23px;
 
     @include rem-fallback(height, $navItemHeight);
 
-    &.hamburger { @include rem-fallback(margin-bottom, 24px); }
+    &.hamburger {
+      @include rem-fallback(margin-bottom, 24px);
+    }
 
     .nav-item-icon {
       @include square-px-rem($navItemHeight);
@@ -40,8 +42,12 @@ $companySvgSize: 23px;
       }
     }
 
-    &.company .nav-item-icon img { @include square-px-rem($companySvgSize); }
-    &.company .nav-item-icon svg { @include square-px-rem($companySvgSize); }
+    &.company .nav-item-icon img {
+      @include square-px-rem($companySvgSize);
+    }
+    &.company .nav-item-icon svg {
+      @include square-px-rem($companySvgSize);
+    }
 
     .nav-item-text {
       display: none;
@@ -53,7 +59,9 @@ $companySvgSize: 23px;
       @include rem-fallback(line-height, $navItemHeight);
     }
 
-    .nav-item-icon + .nav-item-text { padding-left: 0; }
+    .nav-item-icon + .nav-item-text {
+      padding-left: 0;
+    }
   }
 
   a.nav-item {
@@ -61,17 +69,23 @@ $companySvgSize: 23px;
 
     &.active,
     &:focus,
-    &:hover { font-family: $fontSelawikSemibold; }
+    &:hover {
+      font-family: $fontSelawikSemibold;
+    }
   }
 
   // Don't include the hamburger style with the a.nav-item to prevent the svg
   // from popping when the font family changes
-  .nav-item.hamburger { cursor: pointer; }
+  .nav-item.hamburger {
+    cursor: pointer;
+  }
 
   &.expanded {
     width: $leftNavExpandedWidth;
 
-    .nav-item .nav-item-text { display: block }
+    .nav-item .nav-item-text {
+      display: block;
+    }
   }
 
   // Apply theme properties
@@ -82,9 +96,13 @@ $companySvgSize: 23px;
     .nav-item {
       color: themed('colorNavText');
 
-      .nav-item-icon svg { fill: themed('colorNavItemIcon'); }
+      .nav-item-icon svg {
+        fill: themed('colorNavItemIcon');
+      }
 
-      &.company .nav-item-icon svg { fill: themed('colorNavText'); }
+      &.company .nav-item-icon svg {
+        fill: themed('colorNavText');
+      }
     }
 
     a.nav-item,
@@ -95,8 +113,9 @@ $companySvgSize: 23px;
       &:hover {
         color: themed('colorNavText');
         background-color: themed('colorNavItemBgHover');
-
-        .nav-item-icon svg { fill: themed('colorNavText'); }
+        .nav-item-icon svg {
+          fill: themed('colorNavText');
+        }
       }
     }
   }
