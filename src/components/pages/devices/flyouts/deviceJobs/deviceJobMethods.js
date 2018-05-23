@@ -38,6 +38,8 @@ const initialState = {
   methodName: undefined,
   firmwareVersion: undefined,
   firmwareUri: undefined,
+  increasingSpeed: undefined, // Added by george.berar@accenture.com
+  telemetryFrequencyInterval: undefined, // Added by george.berar@accenture.com
   commonMethods: []
 };
 
@@ -66,6 +68,21 @@ export class DeviceJobMethods extends LinkedComponent {
         value => (this.isFirmwareUpdate() ? Validator.notEmpty(value) : true),
         () => this.props.t('devices.flyouts.jobs.validation.required')
       );
+
+    // Modified by george.berar@accenture.com
+    // Start
+    this.increasingSpeedLink = this.linkTo('increasingSpeed')
+      .check(
+        value => (this.isIncreasingSpeed() ? Validator.notEmpty(value) : true),
+        () => this.props.t('devices.flyouts.jobs.validation.required')
+      );
+
+    this.telemetryFrequencyIntervalLink = this.linkTo('telemetryFrequencyInterval')
+    .check(
+      value => (this.isUpdateTelemetryFrequency() ? Validator.notEmpty(value) : true),
+      () => this.props.t('devices.flyouts.jobs.validation.required')
+    );
+    // End
   }
 
   componentDidMount() {
@@ -105,7 +122,9 @@ export class DeviceJobMethods extends LinkedComponent {
       this.jobNameLink,
       this.methodNameLink,
       this.firmwareVersionLink,
-      this.firmwareUriLink
+      this.firmwareUriLink,
+      this.increasingSpeedLink, // Added by george.berar@accenture.com
+      this.telemetryFrequencyIntervalLink // Added by george.berar@accenture.com
     ].every(link => !link.error);
   }
 
@@ -135,6 +154,21 @@ export class DeviceJobMethods extends LinkedComponent {
       ? this.methodNameLink.value === methodJobConstants.firmwareUpdate
       : undefined;
   }
+
+  // Added by george.berar@accenture.com
+  // Start
+  isIncreasingSpeed() {
+    return this.methodNameLink.value
+    ? this.methodNameLink.value === methodJobConstants.increaseSpeed
+    : undefined;
+  }
+
+  isUpdateTelemetryFrequency() {
+    return this.methodNameLink.value
+    ? this.methodNameLink.value === methodJobConstants.updateTelemetryFrequency
+    : undefined;
+  }
+  // End
 
   getSummaryMessage() {
     const { t } = this.props;
@@ -178,6 +212,38 @@ export class DeviceJobMethods extends LinkedComponent {
             <FormLabel>{t('devices.flyouts.jobs.methods.methodName')}</FormLabel>
             <FormControl className="long" type="select" link={this.methodNameLink} options={methodOptions} placeholder={t('devices.flyouts.jobs.methods.methodNameHint')} clearable={false} searchable={true} errorState={!!error} />
           </FormGroup>
+
+         {
+            /*  Added by george.berar@accenture.com
+                Start
+            */
+         }
+
+          {
+            this.isIncreasingSpeed() &&
+            [
+              <FormGroup key="increasing-speed">
+                <FormLabel>Increase speed with</FormLabel>
+                <FormControl className="long" link={this.increasingSpeedLink} type="text" placeholder="insert value here..." />
+              </FormGroup>
+            ]
+          }
+
+          {
+            this.isUpdateTelemetryFrequency() &&
+            [
+              <FormGroup key="update-telemetry-interval">
+                <FormLabel>Desired frequency (ms)</FormLabel>
+                <FormControl className="long" link={this.telemetryFrequencyIntervalLink} type="text" placeholder="e.g. 5000 (5 seconds)" />
+              </FormGroup>
+            ]
+          }
+
+          {
+            /*  Added by george.berar@accenture.com
+                End
+            */
+          }
 
           <FormGroup>
             <FormLabel>{t('devices.flyouts.jobs.jobName')}</FormLabel>

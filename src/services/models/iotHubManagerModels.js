@@ -97,25 +97,39 @@ export const toSubmitPropertiesJobRequestModel = (devices, { jobName, updatedPro
 };
 
 export const methodJobConstants = {
-  firmwareUpdate: 'FirmwareUpdate'
+  firmwareUpdate: 'FirmwareUpdate',
+  increaseSpeed: 'IncreaseSpeed',
+  updateTelemetryFrequency: "UpdateTelemetryFrequency"
 };
 
-export const toSubmitMethodJobRequestModel = (devices, { jobName, methodName, firmwareVersion, firmwareUri }) => {
+export const toSubmitMethodJobRequestModel = (devices, { jobName, methodName, firmwareVersion, firmwareUri, increasingSpeed, telemetryFrequencyInterval }) => {
   const jobId = jobName ? jobName + '-' + uuid() : uuid();
   const deviceIds = devices.map(({ id }) => `'${id}'`).join(',');
-  const JsonPayload = (methodName === methodJobConstants.firmwareUpdate)
-    ? JSON.stringify({
+
+  let JsonPayload = {};
+
+  if (methodName === methodJobConstants.firmwareUpdate) {
+    JsonPayload = {
       Firmware: firmwareVersion,
       FirmwareUri: firmwareUri
-    })
-    : '{}';
+    }
+  } else if (methodName === methodJobConstants.increaseSpeed) {
+    JsonPayload = {
+      IncreaseSpeedWith: increasingSpeed
+    }
+  } else if (methodName === methodJobConstants.updateTelemetryFrequency) {
+    JsonPayload = {
+      TelemetryInterval: telemetryFrequencyInterval
+    };
+  }
+
   const request = {
     JobId: jobId,
     QueryCondition: `deviceId in [${deviceIds}]`,
     MaxExecutionTimeInSeconds: 0,
     MethodParameter: {
       Name: methodName,
-      JsonPayload
+      JsonPayload: JSON.stringify(JsonPayload)
     }
   };
   return request;
